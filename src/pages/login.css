@@ -1,0 +1,17 @@
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.formTable{
+    width: 450px;
+    margin-top: 25px;
+    margin-top: 100px;
+   
+}
+.row{
+    display: flex;
+    justify-content: center;
+}
+ 
+

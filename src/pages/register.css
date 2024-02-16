@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+
+}
+.formBox{
+    
+    
+    width: 500px;
+    margin-top: 25px;
+}
+.reg{
+    height: 480px;
+    width: auto;
+    margin-top: 10px;
+    border-radius: 3%;
+}
+.col-md-6{
+    display: flex;
+    justify-content: center;
+
+}
+.text-center{
+    margin-left: 100px;
+}

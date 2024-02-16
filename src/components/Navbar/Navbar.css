@@ -1,0 +1,12 @@
+li {
+    list-style-type: none;
+}
+.navbar-brand  img{
+    height: 50px;
+}
+
+.navbar-wishi-icon {
+    width: 20px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px; /* Add some space between the icon and text */
+  }

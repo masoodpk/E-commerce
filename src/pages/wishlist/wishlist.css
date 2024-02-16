@@ -1,0 +1,21 @@
+
+
+.wishlist-container {
+    text-align: center; /* Center align the content */
+}
+
+.wishname {
+  margin-top: 20px;
+    color: rgb(253, 117, 140);
+}
+
+.card-container {
+    display: flex; /* Display cards horizontally */
+    flex-wrap: wrap; /* Allow wrapping of cards if they overflow horizontally */
+    justify-content: center; 
+    margin-top: 100px;
+}
+
+.card {
+    margin: 10px; /* Add some space around each card */
+}
