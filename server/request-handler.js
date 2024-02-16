@@ -190,9 +190,9 @@ export async function postnewcollections(req, res) {
   try {
     let { userId } = req.user;
     console.log(userId);
-    // let { filename } = req.file;
+    
     let { description, title, discount, category, } = req.body;
-    let user = await wishlistModel.create({ title, discount, category, description, userId});
+    let user = await wishlistModel.create({  title, discount, category, description, userId});
     console.log(user);
     return res.status(201).json({
       msg: "data uploaded",
@@ -212,7 +212,7 @@ export async function wishlist(req, res) {
   try {
 
  let {userId} = req.user
-    const user = await newproductModel.find({ userId});
+    const user = await wishlistModel.find({ userId});
     console.log(user);
     return res.status(200).json({
       msg: "Files retrieved successfully",

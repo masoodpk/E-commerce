@@ -8,7 +8,7 @@ import Login from './pages/login'
 
 import NewProduct from './pages/newProduct'
 import MyProduct from './pages/myProduct'
-// import Cart from './pages/cart'
+import Cart from './pages/cart'
 import Wishlist from './pages/wishlist/wishlist'
 
 
@@ -32,7 +32,7 @@ function App() {
 <Route path="/wishlist" Component={Wishlist} />
 <Route path="/newProduct" Component={NewProduct} />
 <Route path="/myProduct" Component={MyProduct} />
-{/* <Route path="/cart" Component={Cart} /> */}
+<Route path="/cart" Component={Cart} />
 
 
 

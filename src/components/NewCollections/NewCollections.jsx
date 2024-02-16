@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import "./NewCollections.css"
 import Wish from '../assets/wish.png'
+import Carty from '../assets/carty.png'
 
 function myProduct() {
     let baseURL = location.href;
@@ -13,6 +14,7 @@ function myProduct() {
     }
     const [data, setData] = useState([]);
     const [wishStatus, setWishStatus] = useState([]);
+    const [showMessage, setShowMessage] = useState(false);
     useEffect(() => {
 
         axios.get("/api/newCollections", {
@@ -58,7 +60,10 @@ function myProduct() {
         })
         .then(res => {
             console.log("Item added to wishlist:", res.data);
+            setShowMessage(true);
+            setTimeout(() => setShowMessage(false), 2000); 
         })
+    
         .catch(error => {
             console.error("Error adding item to wishlist:", error);
         });
@@ -84,18 +89,22 @@ function myProduct() {
                       <p>${item.discount}</p>
                       <p className='text-success'>offer price ${item.description}</p>
                      
-                     <div className='wish'>
-              
-                     <button className="wish-btn" onClick={() => handleClick(index)}>
-                                    <img src={Wish} alt="Wish" className="wish-icon" />
-                                </button>
-                     </div>
+                      <div className='icons-container'>
+                                    <button className="icon-btn" onClick={() => handleClick(index)}>
+                                        <img src={Carty} alt="Carty" className="icon" />
+                                    </button>
+                                    <button className="icon-btn" onClick={() => handleClick(index)}>
+                                        <img src={Wish} alt="Wish" className="icon" />
+                                    </button>
+                                </div>
             </div>
         </div>
     ))}
 </div>
 
-
+{showMessage && (
+                <div className="popup-message">Item added to wishlist</div>
+            )}
 
 
         </>

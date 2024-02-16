@@ -75,3 +75,34 @@ p {
     height: 32px; /* Adjust icon size as needed */
     /* Add any additional styles for the icon here */
 }
+
+
+
+.icons-container {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    width: 20px; /* Adjust icon size as needed */
+    height: auto;
+}
+.popup-message {
+    position: fixed;
+    top: 20px; /* Adjust distance from top */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da; /* Adjust background color */
+    color: #721c24; /* Adjust text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb; /* Adjust border color */
+}

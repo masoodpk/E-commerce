@@ -11,7 +11,7 @@ function Wishlist() {
     const [data, setData] = useState([]);
     useEffect(() => {
         let token = localStorage.getItem("token")
-        axios.get("/api/myProduct", {
+        axios.get("/api/wishlist", {
             headers: {
                 "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${token}`
