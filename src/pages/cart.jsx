@@ -2,6 +2,9 @@ import axios from 'axios'
 import { useState, useEffect  } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import "./cart.css"
+import { Toaster, toast } from "react-hot-toast";
+
+
 
 function Cart() {
     let baseURL = location.href;
@@ -9,6 +12,9 @@ function Cart() {
         baseURL = "http://localhost:3005"
     }
     const [data, setData] = useState([]);
+    const [showOrderMessage, setShowOrderMessage] = useState(false);
+    
+   
 
     useEffect(() => {
         let token = localStorage.getItem("token")
@@ -26,30 +32,59 @@ function Cart() {
             .catch(console.log);
     }, []);
 
+  
+    
+
+
+
+    const handleBuyNow = (index) => {
+        setShowOrderMessage(true);
+        setTimeout(() => setShowOrderMessage(false), 2000); 
+    };
+
     return (
         <>
             <div>
+      <Toaster />
             <Navbar />
             <div>
                 <div className='name'>
-                <h1>MY CART</h1>
+                <h1>MY BAG</h1>
                 </div>
 
-                {data.map((item, index) => (
 
-                    <div className="card " key={index}>
-
-                        <img src={`${baseURL}/api/image/${item.image}`} width={"200"} />
-                        <h4>{item.name}</h4>
-                        <p>{item.new_price}</p>
-                        <p>{item.old_price}</p>
-                        <div className='horibtn'> 
-                             <button class="btn btn-primary" >Buy Now</button>
-                          <button class="btn btn-danger"  >Delete</button> 
+{data.map((item, index) => (
+    <div className="card horizontal-card" key={index}>
+    
+        <div className="card-img">
+            <img src={`${baseURL}/api/image/${item.image}`} alt={item.name} />
+        </div>
+     
+        <div className="card-content">
+            <h4>{item.title}</h4>                                                     
+            <p> {item.category}</p>
+            <p> {item.old_price}</p>
+            <div className="btn-group">
+                                                                                         {/* handleRemove(index)    */}
+                <button className="btn remove"onClick={() =>handleRemove(index)}>Remove</button>
+              
+                <div className="quantity-controls">
+                    <button className="btn btn-outline-primary" onClick={() => handleQuantityChange(index, 'decrease')}>-</button>
+                    <span>{item.quantity}</span>
+                    <button className="btn btn-outline-primary" onClick={() => handleQuantityChange(index, 'increase')}>+</button>
+                </div>
+             
+                <button className="btn buynow " onClick={() => handleBuyNow(index)}>Buy Now</button>
+            </div>
+        </div>
+    </div>
+))}
+         {showOrderMessage && (
+                        <div className="popup-message">
+                            Item ordered
                         </div>
-                        
-                    </div>
-                ))}
+                    )}
+
                 </div>
             </div>
           

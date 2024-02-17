@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken"
 import loginModel from "./models/login.model.js";
 import newproductModel from "./models/newproduct.model.js";
 import cartModel from "./models/cart.model.js";
-
-import path from "path";
 import wishlistModel from "./models/wishlist.model.js";
+import path from "path";
+
 const { sign } = jwt;
 
 
@@ -163,36 +163,16 @@ export async function newCollections(req, res) {
 
 
 
-export async function cart(req, res) {
-  try {
 
- let {userId} = req.user
-    const user = await cartModel.find({ userId});
-    let pids = user.map(i => i.itemId, image);
-    let data = await cartModel.find({ id: { $in : pids }});
-    return res.status(200).json({
-      msg: "Files retrieved successfully",
-      user,
-      data
-    });
-
-    
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      msg: "Error occurred while retrieving files",
-    });
-  }
-};
 
 
 export async function postnewcollections(req, res) {
   try {
     let { userId } = req.user;
     console.log(userId);
-    
-    let { description, title, discount, category, } = req.body;
-    let user = await wishlistModel.create({  title, discount, category, description, userId});
+   
+    let { description, title, discount, category, profile } = req.body;
+    let user = await wishlistModel.create({profile, title, discount, category, description, userId});
     console.log(user);
     return res.status(201).json({
       msg: "data uploaded",
@@ -205,8 +185,6 @@ export async function postnewcollections(req, res) {
     });
   }
 }
-
-
 
 export async function wishlist(req, res) {
   try {
@@ -227,3 +205,54 @@ export async function wishlist(req, res) {
     });
   }
 };
+
+
+export async function cartnewcollections(req, res) {
+  try {
+    let { userId } = req.user;
+    console.log(userId);
+    
+    let { title, category, profile } = req.body;
+    let user = await cartModel.create({ profile, title, category, userId});
+    console.log(user);
+    return res.status(201).json({
+      msg: "data uploaded",
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "error occured",
+    });
+  }
+}
+
+export async function cart(req, res) {
+  try {
+
+ let {userId} = req.user
+    const user = await cartModel.find({ userId});
+    console.log(user);
+    return res.status(200).json({
+      msg: "Files retrieved successfully",
+      user
+    });
+
+    //  
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      msg: "Error occurred while retrieving files",
+    });
+  }
+};
+
+
+export async function removeCard(req, res) {
+
+  let { id } = req.user;
+  let remove = await cartModel.deleteOne({ userid: id})
+  if (remove) {
+      return res.status(200).json("Removed");
+  }
+}

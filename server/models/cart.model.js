@@ -4,22 +4,16 @@ const schema = new mongoose.Schema({
     userId: {
         type: String
     },
-    itemId: {
+    profile: {
         type: String
     },
-    name:{
+    title: {
         type: String
     },
-    image:{
+    category: {
         type: String
     },
-
-    new_price:{
-        type: String
-    },
-    old_price:{
-        type: String
-    },
+   
 
 });
 

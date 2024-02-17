@@ -106,3 +106,8 @@ p {
     border-radius: 5px;
     border: 1px solid #f5c6cb; /* Adjust border color */
 }
+.popup-message.cart {
+    background-color: #cce5ff; /* Change background color for cart message */
+    color: #004085; /* Change text color for cart message */
+    border-color: #b8daff; /* Change border color for cart message */
+}
