@@ -3,6 +3,11 @@ import { useState, useEffect  } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import "./cart.css"
 import { Toaster, toast } from "react-hot-toast";
+import Topic from '../components/assets/toppic.jpg'
+import Cartitems from '../components/cart-component/cartitems';
+import Mybag from '../components/assets/mybag.png'
+import Footer from '../components/Footer/Footer.jsx'
+import Confetti from 'react-confetti';
 
 
 
@@ -13,9 +18,9 @@ function Cart() {
     }
     const [data, setData] = useState([]);
     const [showOrderMessage, setShowOrderMessage] = useState(false);
+    const [showConfetti, setShowConfetti] = useState(false);
     
-   
-
+   console.log(data);
     useEffect(() => {
         let token = localStorage.getItem("token")
         axios.get("/api/cart", {
@@ -24,6 +29,7 @@ function Cart() {
                 Authorization: `Bearer ${token}`
             }
         })
+
             .then(res => {
                 console.log(res.data);
                 setData(res.data.user)
@@ -32,14 +38,54 @@ function Cart() {
             .catch(console.log);
     }, []);
 
-  
+    const handleRemove = (userId) => {
+        let token = localStorage.getItem("token");
+        axios.delete(`/api/cartremove/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log("Item removed from cart:", res.data);
+            
+            setData(prevData => prevData.filter(item => item._id !== userId));
+            toast.success("Item removed from cart");
+        })
+        .catch(error => {
+            console.error("Error removing item from cart:", error);
+            toast.error("Failed to remove item from cart");
+        });
+    };
+
+
+    const handleQuantityChange = (index, type) => {
+        const updatedData = [...data];
+        const maxQuantity = 10; 
     
+        if (type === 'increase') {
+            if (updatedData[index].quantity < maxQuantity) {
+                updatedData[index].quantity++;
+               
+            }
+        } else if (type === 'decrease') {
+            if (updatedData[index].quantity > 1) {
+                updatedData[index].quantity--;
+                
+            }
+        }
+        
+        setData(updatedData);
+    };
 
 
 
     const handleBuyNow = (index) => {
         setShowOrderMessage(true);
-        setTimeout(() => setShowOrderMessage(false), 2000); 
+        setShowConfetti(true);
+        setTimeout(() => {
+            setShowOrderMessage(false);
+            setShowConfetti(false); 
+        }, 3000); 
     };
 
     return (
@@ -47,9 +93,16 @@ function Cart() {
             <div>
       <Toaster />
             <Navbar />
+<div  className='topic'>
+<img src={Topic} alt="" />
+</div>
+
+
+
             <div>
                 <div className='name'>
                 <h1>MY BAG</h1>
+                <img src={Mybag} alt="" />
                 </div>
 
 
@@ -57,16 +110,20 @@ function Cart() {
     <div className="card horizontal-card" key={index}>
     
         <div className="card-img">
-            <img src={`${baseURL}/api/image/${item.image}`} alt={item.name} />
+            <img src={`${baseURL}/api/image/${item.profile}`} alt={item.name} />
         </div>
      
         <div className="card-content">
-            <h4>{item.title}</h4>                                                     
-            <p> {item.category}</p>
-            <p> {item.old_price}</p>
-            <div className="btn-group">
-                                                                                         {/* handleRemove(index)    */}
-                <button className="btn remove"onClick={() =>handleRemove(index)}>Remove</button>
+            <h4>{item.title}</h4>   
+                                  
+            <h4> {item.category}</h4>
+
+            <h4>${item.discount}</h4>
+           
+
+            <div className="btnn-group">
+                                                                                         
+                <button className="btn remove"onClick={() =>handleRemove(item._id)}>Remove</button>
               
                 <div className="quantity-controls">
                     <button className="btn btn-outline-primary" onClick={() => handleQuantityChange(index, 'decrease')}>-</button>
@@ -84,12 +141,13 @@ function Cart() {
                             Item ordered
                         </div>
                     )}
-
+          {showConfetti && <Confetti />}
                 </div>
             </div>
-          
 
-        </>
+            <Cartitems /><br /><br /><br />
+            <Footer />
+         </>
     )
 }
 

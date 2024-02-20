@@ -32,7 +32,8 @@ router.route("/postnewcollections").post(auth, uploader.single("file"), rh.postn
 router.route("/wishlist").get(auth, rh.wishlist)
 router.route("/cartnewcollections").post(auth, uploader.single("file"), rh.cartnewcollections)
 router.route("/cart").get(auth, rh.cart)
-router.route("/removeCard").post(auth,rh.removeCard);
+router.route("/cartremove/:userId").delete(auth,rh.cartremove);
+router.route("/wishremove/:userId").delete(auth,rh.wishremove);
 
 
 export default router;

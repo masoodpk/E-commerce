@@ -6,7 +6,17 @@ li {
 }
 
 .navbar-wishi-icon {
-    width: 20px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 5px; /* Add some space between the icon and text */
+    width: 25px; 
+    height: auto; 
+    margin-right: 5px; 
   }
+  .navbar-cart-iconi{
+    height: 25px;
+    width: 25px;
+  }
+  /* .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+} */

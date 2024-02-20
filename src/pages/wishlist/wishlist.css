@@ -1,7 +1,7 @@
 
 
 .wishlist-container {
-    text-align: center; /* Center align the content */
+    text-align: center; 
 }
 
 .wishname {
@@ -10,12 +10,30 @@
 }
 
 .card-container {
-    display: flex; /* Display cards horizontally */
-    flex-wrap: wrap; /* Allow wrapping of cards if they overflow horizontally */
+    display: flex; 
+    flex-wrap: wrap; 
     justify-content: center; 
     margin-top: 100px;
 }
 
 .card {
-    margin: 10px; /* Add some space around each card */
+    margin: 10px; 
 }
+.card.tri img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.remove-btn {
+    position: absolute;
+    bottom: 2px; 
+    right: 2px; 
+    padding: 2px 5px; 
+    font-size: 12px; 
+    background-color: rgb(151, 0, 88); 
+    color: white;
+   
+    border-radius: 5px;
+    cursor: pointer;
+  }

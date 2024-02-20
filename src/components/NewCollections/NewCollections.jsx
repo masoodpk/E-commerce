@@ -44,12 +44,10 @@ function myProduct() {
             });
     }, []);
 
-   
+
 
     const handleClick = (index) => {
-        // const newWishStatus = [...wishStatus];
-        // newWishStatus[index] = !newWishStatus[index];
-        // setWishStatus(newWishStatus);
+
 
 
         const item = data[index];
@@ -59,8 +57,8 @@ function myProduct() {
             title: item.title,
             discount: item.discount,
             category: item.category,
-            profile:item.profile
-            
+            profile: item.profile
+
         }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -81,16 +79,17 @@ function myProduct() {
             });
     };
 
-    const handleCartClick = (index) => {
-      
+    const handleCartClick = (index, quantity) => {
+
 
         const item = data[index];
 
         axios.post("/api/cartnewcollections", {
             title: item.title,
             category: item.category,
-             profile:item.profile
-
+            profile: item.profile,
+            quantity:quantity,
+            discount: item.discount
         }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -110,18 +109,15 @@ function myProduct() {
             });
     };
 
-
-
-   
-
-
     return (
         <>
-
+        <div className='newz'>
+        <h1>NEW COLLECTIONS</h1>
+        </div>
 
 
             <div className="card-container"  >
-
+            
                 {data.map((item, index) => (
                     <div className="card" key={index}>
                         <div className="image-container">
@@ -135,8 +131,8 @@ function myProduct() {
                             <p className='text-success'>offer price ${item.description}</p>
 
                             <div className='icons-container'>
-                    
-                                <button className="icon-btn" onClick={() => handleCartClick(index)}>
+
+                                <button className="icon-btn" onClick={() => handleCartClick(index, 1)}>
                                     <img src={Carty} alt="Carty" className="icon" />
                                 </button>
                                 <button className="icon-btn" onClick={() => handleClick(index)}>
@@ -150,7 +146,7 @@ function myProduct() {
 
 
 
-{showWishlistMessage && (
+            {showWishlistMessage && (
                 <div className="popup-message wishlist">
                     Item added to wishlist
                 </div>

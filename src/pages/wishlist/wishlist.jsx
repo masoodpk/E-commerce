@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar';
 import './wishlist.css'
+import Wishcompo from '../../components/wishlist-component/wishcompo';
+import Footer from '../../components/Footer/Footer';
 
 function Wishlist() {
     let baseURL = location.href;
@@ -25,6 +27,21 @@ function Wishlist() {
             })
             .catch(console.log);
     }, []);
+    const handleRemove = (userId) => {
+        let token = localStorage.getItem("token");
+        axios.delete(`/api/wishremove/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log("Item removed from wishlist:", res.data);
+            setData(prevData => prevData.filter(item => item._id !== userId));
+        })
+        .catch(error => {
+            console.error("Error removing item from wishlist:", error);
+        });
+    };
 
     return (
         <>
@@ -36,20 +53,22 @@ function Wishlist() {
             <div className="card-container">
                 {data.map((item, index) => (
 
-                    <div className="card " key={index}>
-
+                    <div className="card tri" key={index}>
+         <button className="remove-btn" onClick={() => handleRemove(item._id)}>Remove</button>
                         <img src={`${baseURL}/api/image/${item.profile}`} width={"200"} />
                         <h4>{item.title}</h4>
                       
                         <p>{item.category}</p>
-                        <p>${item.discount}</p>
-                        <p>${item.description}</p> 
+                        <p>Price${item.discount}</p>
+                        <p>OfferPrice${item.description}</p> 
                     </div>
                 ))}
             </div>
             </div>
 
-
+<Wishcompo /><br />
+<br />
+<Footer />
         </>
     )
 }

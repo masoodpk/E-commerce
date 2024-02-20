@@ -13,7 +13,13 @@ const schema = new mongoose.Schema({
     category: {
         type: String
     },
-   
+    productid:{type:String},
+    quantity:{ type:String},
+    discount: {
+        type: String
+    },
+       
+ 
 
 });
 

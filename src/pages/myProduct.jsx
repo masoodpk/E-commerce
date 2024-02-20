@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar';
+import './myproduct.css'
+import Footer from '../components/Footer/Footer';
+import Cartitems from '../components/cart-component/cartitems';
 
 function myProduct() {
     let baseURL = location.href;
@@ -29,22 +32,24 @@ function myProduct() {
         <>
             <div>
             <Navbar />
+            <div className="card-container">
                 {data.map((item, index) => (
 
-                    <div className="card " key={index}>
+                    <div className="card two" key={index}>
 
                         <img src={`${baseURL}/api/image/${item.profile}`} width={"200"} />
                         <h4>{item.title}</h4>
                       
                         <p>{item.category}</p>
-                        <p>${item.discount}</p>
-                        <p>${item.description}</p> 
+                        <p>Price:${item.discount}</p>
+                        <p>Offer Price:${item.description}</p> 
                     </div>
                 ))}
             </div>
-            <a href="/">
-   <input type="submit" value="Home" />
-</a>
+            </div>
+<Cartitems /><br /><br /><br />
+
+<Footer />
 
         </>
     )

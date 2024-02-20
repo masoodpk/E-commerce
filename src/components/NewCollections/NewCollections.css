@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* Center align cards */
-   margin-top: 150px;
+   margin-top: 130px !important;
    
 }
 
@@ -111,3 +111,20 @@ p {
     color: #004085; /* Change text color for cart message */
     border-color: #b8daff; /* Change border color for cart message */
 }
+
+
+.newz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px; /* Adjust as needed */
+  }
+
+
+  
+  
+   .newz h1 {
+    text-align: center;
+    margin-bottom: -100px;
+    font: 50px Lora;
+  } 

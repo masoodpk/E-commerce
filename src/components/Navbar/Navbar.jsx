@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import footer_logo from '../assets/ecart.png'
 import Wishi from '../assets/wish.png'
 import './Navbar.css'
-
+import Carty from '../assets/carty.png'
 
 
 function Navbar() {
@@ -60,7 +60,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="/">SHOP <span className="sr-only">(current)</span></a>
+              <Link className="nav-link" to="/">SHOP </Link>
             </li>
             <li className="nav-item dropdown active">
               <a className="nav-link dropdown-toggle"  href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
@@ -69,7 +69,7 @@ function Navbar() {
               </a>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">Fashion</a>
+                <Link className="dropdown-item" to="/">Fashion</Link>
          
               </div>
             </li>
@@ -79,7 +79,7 @@ function Navbar() {
                 WOMEN
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">Fashion</a>
+                <Link className="dropdown-item" to="/">Fashion</Link>
          
               </div>
             </li>
@@ -89,7 +89,7 @@ function Navbar() {
                 KIDS
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">Fashion</a>
+                <Link className="dropdown-item" to="/">Fashion</Link>
            
               </div>
             </li>
@@ -190,26 +190,24 @@ function Navbar() {
             </ul>
           </div>
     
-<button  
-      type="button"
-      className="btn join dropdown-toggle"
-      data-bs-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-      data-toggle="dropdown"
-      id="dropdownMenuButton"
-      >
-My Cart
-</button>
-<ul className="dropdown-menu"  aria-labelledby="dropdownMenuButton">
-                    <li>
-                      <Link className="dropdown-item" to="/cart">
-                       Cart
-                      </Link>
-                    </li>
-                    </ul>
+
+<ul className="navbar-nav">
+  <li className="nav-item">
+    <Link
+      className="nav-link"
+      to="/cart"
+    >
+      <img src={Carty} alt="Cart" className="navbar-cart-iconi" />
+    </Link>
+  </li>
+</ul>
+
+
+
+
+
                     </div> 
-   </li>
+   </li> 
             
 
    

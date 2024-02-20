@@ -212,8 +212,8 @@ export async function cartnewcollections(req, res) {
     let { userId } = req.user;
     console.log(userId);
     
-    let { title, category, profile } = req.body;
-    let user = await cartModel.create({ profile, title, category, userId});
+    let { title, category, profile, quantity, discount } = req.body;
+    let user = await cartModel.create({ profile, title, category, userId, quantity, discount});
     console.log(user);
     return res.status(201).json({
       msg: "data uploaded",
@@ -248,11 +248,33 @@ export async function cart(req, res) {
 };
 
 
-export async function removeCard(req, res) {
 
+export async function cartremove (req, res) {
+  const userId = req.user.userId;
+  let { productid } = req.body;
   let { id } = req.user;
-  let remove = await cartModel.deleteOne({ userid: id})
-  if (remove) {
-      return res.status(200).json("Removed");
+  try {
+    
+      await cartModel.deleteOne({ userId , productid: productid });
+      res.status(200).json({ message: 'Item removed from cart successfully' });
+  } catch (error) {
+      console.error("Error removing item from cart:", error);
+      res.status(500).json({ error: 'Failed to remove item from cart' });
   }
-}
+};
+
+export async function wishremove (req, res) {
+  const userId = req.user.userId;
+  let { productid } = req.body;
+  let { id } = req.user;
+  try {
+    
+      await wishlistModel.deleteOne({ userId , productid: productid });
+      res.status(200).json({ message: 'Item removed from cart successfully' });
+  } catch (error) {
+      console.error("Error removing item from cart:", error);
+      res.status(500).json({ error: 'Failed to remove item from cart' });
+  }
+};
+
+
