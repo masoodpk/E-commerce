@@ -20,12 +20,13 @@ function Navbar() {
 
 
 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
    
     if (token) {
       setIsLoggedIn(true);
-  
+
       const response = {
         data: {
           user: {
@@ -34,22 +35,25 @@ function Navbar() {
         }
       };
       
-      setuserData(response.data.user.type);
-      const userType = response.data.user.type;
-      if (userType === "seller") {
-        setSeller(true);
-      } else if (userType === "buyer") {
-        setBuyer(true);
-      }
+      setuserData(response.data.user);
+      // const userType = response.data.user.type;
+      // if (userType === "seller") {
+      //   setSeller(true);
+      // } else if (userType === "buyer") {
+      //   setBuyer(true);
+      // }
     } else {
       setIsLoggedIn(false);
+      
     }
 
-  }, []);
+  },
+   []);
 
 
   return (
     <>
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">
         <img src={footer_logo} alt="Logo" className="navbar-logo" />SHOPPY</a>
