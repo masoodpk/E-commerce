@@ -4,6 +4,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import './wishlist.css'
 import Wishcompo from '../../components/wishlist-component/wishcompo';
 import Footer from '../../components/Footer/Footer';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Wishlist() {
     let baseURL = location.href;
@@ -37,6 +39,7 @@ function Wishlist() {
         .then(res => {
             console.log("Item removed from wishlist:", res.data);
             setData(prevData => prevData.filter(item => item._id !== userId));
+            toast.success("Item removed from cart");
         })
         .catch(error => {
             console.error("Error removing item from wishlist:", error);
