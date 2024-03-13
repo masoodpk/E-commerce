@@ -36,4 +36,14 @@
    
     border-radius: 5px;
     cursor: pointer;
-  }
+  } 
+
+
+
+
+.text-left{
+    margin-left: 10px;
+}
+.offer{
+    color: green;
+}

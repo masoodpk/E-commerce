@@ -39,7 +39,7 @@ function Wishlist() {
         .then(res => {
             console.log("Item removed from wishlist:", res.data);
             setData(prevData => prevData.filter(item => item._id !== userId));
-            toast.success("Item removed from cart");
+              toast.success("Item removed from cart");
         })
         .catch(error => {
             console.error("Error removing item from wishlist:", error);
@@ -57,14 +57,16 @@ function Wishlist() {
                 {data.map((item, index) => (
 
                     <div className="card tri" key={index}>
-         <button className="remove-btn" onClick={() => handleRemove(item._id)}>Remove</button>
+         <button className="remove-btn" onClick={() => handleRemove(item._id)}>×</button>
                         <img src={`${baseURL}/api/image/${item.profile}`} width={"200"} />
+                        <div className="text-left">
                         <h4>{item.title}</h4>
                       
                         <p>{item.category}</p>
                         <p>Price${item.discount}</p>
-                        <p>OfferPrice${item.description}</p> 
-                    </div>
+                        <p className='offer'>OfferPrice${item.description}</p> 
+                        </div>
+                    </div> 
                 ))}
             </div>
             </div>

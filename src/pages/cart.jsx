@@ -50,7 +50,7 @@ function Cart() {
             console.log("Item removed from cart:", res.data);
             
             setData(prevData => prevData.filter(item => item._id !== userId));
-            toast.success("Item removed from cart");
+            toast.success("Item removed from cart", { autoClose: 2000 });
         })
         .catch(error => {
             console.error("Error removing item from cart:", error);
@@ -86,7 +86,8 @@ function Cart() {
         setTimeout(() => {
             setShowOrderMessage(false);
             setShowConfetti(false); 
-            toast.success("Item ordered"); 
+           
+            toast.success("Item ordered", { autoClose: 2000 });
         }, 2000); 
     };
 

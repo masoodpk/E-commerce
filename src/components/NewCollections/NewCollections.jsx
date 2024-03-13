@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react'
 import "./NewCollections.css"
 import Wish from '../assets/wish.png'
 import Carty from '../assets/carty.png'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function myProduct() {
     let baseURL = location.href;
@@ -68,9 +70,10 @@ function myProduct() {
 
             .then(res => {
                 console.log("Item added to wishlist:", res.data);
-                setShowMessage(true);
-                setShowWishlistMessage(true);
+                setShowMessage(false);
+                setShowWishlistMessage(false);
                 // setShowCartMessage(true);
+                toast.success("Item added to wishlist", { autoClose: 2000 });
                 setTimeout(() => setShowWishlistMessage(false), 2000);
             })
 
@@ -100,7 +103,8 @@ function myProduct() {
             .then(res => {
                 console.log("Item added to cart:", res.data);
                 setShowMessage(true);
-                setShowCartMessage(true);
+                setShowCartMessage(false);
+                toast.success("Item added to cart", { autoClose: 2000 });
                 setTimeout(() => setShowCartMessage(false), 2000);
             })
 
