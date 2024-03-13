@@ -6,7 +6,16 @@
     margin-top: 60px;
     margin-left: 10px;
     position: relative;
+
   } 
+  .row-cart::before {
+    top: -15px !important; /* Reduced height */
+  }
+  
+  .row-cart::after {
+    bottom: -15px !important; /* Reduced height */
+  }
+  
  
   .row-cart::before,
   .row-cart::after {
