@@ -2,13 +2,14 @@ import axios from 'axios'
 import { useState, useEffect  } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import "./cart.css"
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import Topic from '../components/assets/toppic.jpg'
 import Cartitems from '../components/cart-component/cartitems';
 import Mybag from '../components/assets/mybag.png'
 import Footer from '../components/Footer/Footer.jsx'
 import Confetti from 'react-confetti';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Cart() {
@@ -80,12 +81,13 @@ function Cart() {
 
 
     const handleBuyNow = (index) => {
-        setShowOrderMessage(true);
+        setShowOrderMessage(false);
         setShowConfetti(true);
         setTimeout(() => {
             setShowOrderMessage(false);
             setShowConfetti(false); 
-        }, 3000); 
+            toast.success("Item ordered"); 
+        }, 2000); 
     };
 
     return (

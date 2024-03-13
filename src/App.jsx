@@ -1,7 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/home'
 import Register from './pages/register'
 import Login from './pages/login'
@@ -20,33 +21,30 @@ function App() {
   }
  
   return (
-  <>
+  
   <div>
-  {
+
 <BrowserRouter>
 <Routes>
 
-<Route path="/" Component={Home} />
-<Route path="/register" Component={Register} />
-<Route path="/login" Component={Login} />
-<Route path="/wishlist" Component={Wishlist} />
-<Route path="/newProduct" Component={NewProduct} />
-<Route path="/myProduct" Component={MyProduct} />
-<Route path="/cart" Component={Cart} />
-
-
-
+<Route path="/" element={<Home />} />
+<Route path="/register" element={<Register/>} />
+<Route path="/login" element={<Login/>} />
+<Route path="/wishlist" element={<Wishlist/>} />
+<Route path="/newProduct" element={<NewProduct/>} />
+<Route path="/myProduct" element={<MyProduct/>} />
+<Route path="/cart" element={<Cart/>} />
 
 </Routes>
 
 </BrowserRouter>
-}
+<ToastContainer />
 
 
 </div>
   
   
-  </>
+
   )
 }
 
