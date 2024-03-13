@@ -6,8 +6,8 @@ import footer_logo from '../assets/ecart.png'
 import Wishi from '../assets/wish.png'
 import './Navbar.css'
 import Carty from '../assets/carty.png'
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Navbar() {
   const navigate = useNavigate()
 
@@ -49,6 +49,40 @@ function Navbar() {
 
   },
    []);
+
+
+  //  const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   let cnf = window.confirm("Are you sure you want to log out !");
+  //   if (cnf) {
+  //     toast.success("Logout successful!");
+  //     navigate("/");
+  //   }
+  // };
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    toast.info(
+      <div>
+        <p>Are you sure you want to log out?</p>
+        <button className='logout-btn ' onClick={confirmLogout}>Yes</button>
+        <button className='cancel-btn' onClick={cancelLogout}>No</button>
+      </div>
+    );
+  };
+
+  const confirmLogout = () => {
+    toast.dismiss(); // Close the toast message
+    toast.success("Logout successful!");
+    navigate("/");
+  };
+
+  const cancelLogout = () => {
+    toast.dismiss(); // Close the toast message
+  };
+
+
 
 
   return (
@@ -131,22 +165,30 @@ function Navbar() {
                 </li>
            
             {isLoggedIn ? (
-              <li
-                className="nav-item logout"
-                style={{ position: "relative", right: "0px" }}
-              >
+            //   <li
+            //     className="nav-item logout"
+            //     style={{ position: "relative", right: "0px" }}
+            //   >
 
-                <button className="btn btn-danger p-1" onClick={() => {
-                  localStorage.removeItem("token")
-                  let cnf = confirm("are you sure do wnat to logout !")
-                  if (cnf) {
-                    return navigate("/")
-                  }
-                }}>logout</button>
+            //     <button className="btn btn-danger p-1" onClick={() => {
+            //       localStorage.removeItem("token")
+            //       let cnf = confirm("Are you sure you want to log out !")
+            //       if (cnf) {
+            //         return navigate("/")
+            //       }
+            //     }}>logout</button>
 
 
+            //   </li>
+            // ) 
+            
+            
+              <li className="nav-item logout" style={{ position: "relative", right: "0px" }}>
+                <button className="btn btn-danger p-1" onClick={handleLogout}>logout</button>
               </li>
-            ) : (
+            )
+            
+            : (
               <li className="nav-item dropdown">
                 <div className="btn-group">
                   <button
