@@ -158,14 +158,6 @@ export async function newCollections(req, res) {
   }
 };
 
-
-
-
-
-
-
-
-
 export async function postnewcollections(req, res) {
   try {
     let { userId } = req.user;
